@@ -17,7 +17,7 @@ after-startup-command = [
 ]
 
 # Start AeroSpace at login
-start-at-login = true
+start-at-login = false
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
@@ -44,7 +44,8 @@ key-mapping.preset = 'qwerty'
 # Drop it from your config, if you don't like this behavior
 # See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
 # See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
-on-focus-changed = "move-mouse window-lazy-center"
+#on-focus-changed = "move-mouse window-lazy-center"
+#on-focus-changed = "move-mouse"
 # on-focused-monitor-changed = ['move-mouse monitor-lazy-center'] # switchin dislays mouse re center
 
 # Gaps between windows (inner-*) and between monitor edges (outer-*).

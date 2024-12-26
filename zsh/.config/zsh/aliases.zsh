@@ -76,3 +76,7 @@ alias n="nvim"
 
 # Lazygit
 alias lg="lazygit"
+
+#svn
+alias svnadd="svn st | awk '/\?/ {print $2}' | xargs svn add"
+alias svnrm="svn st | awk '/\!/ {print $2}' | xargs svn rm --force"
