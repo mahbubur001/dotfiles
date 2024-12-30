@@ -1,5 +1,5 @@
 font-family = JetBrainsMono Nerd Font
-font-size = 20
+font-size = 14
 theme = GruvboxDarkHard
 shell-integration-features = no-cursor,sudo,no-title
 cursor-style = block
