@@ -33,6 +33,7 @@ brew install fzf
 brew install bat #bat supports syntax highlighting for a large number of programming and markup languages: https://github.com/sharkdp/bat?tab=readme-ov-file
 brew install fd #https://github.com/sharkdp/fd
 brew install zoxide #https://github.com/ajeetdsouza/zoxide
+brew install --cask ghostty
 
 ### Terminal
 brew install git
