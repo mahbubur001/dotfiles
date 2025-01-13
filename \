@@ -1,10 +1,6 @@
 # Place a copy of this config to ~/.aerospace.toml
 # After that, you can edit ~/.aerospace.toml to your liking
 
-
-
-
-
 # It's not necessary to copy all keys to your config.
 # If the key is missing in your config, "default-config.toml" will serve as a fallback
 
@@ -21,7 +17,7 @@ after-startup-command = [
 ]
 
 # Start AeroSpace at login
-start-at-login = false
+start-at-login = true
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
@@ -94,7 +90,6 @@ outer.right =      0
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
-alt-shift-f= 'fullscreen'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 alt-h = 'focus left'
@@ -190,11 +185,4 @@ run = 'layout floating'
 [[on-window-detected]]
 if.app-id = 'com.apple.Preview'
 run = 'layout floating'
-
-
-[workspace-to-monitor-force-assignment]
-1 = 'main'
-2 = 'main'
-3 = 'secondary'
-4 = 'secondary'
 
