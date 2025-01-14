@@ -21,7 +21,7 @@ after-startup-command = [
 ]
 
 # Start AeroSpace at login
-start-at-login = false
+start-at-login = true
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
@@ -177,6 +177,11 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'com.getflywheel.lightning.local'
+run = 'layout floating'
+
+
+[[on-window-detected]]
+if.app-id = 'net.whatsapp.WhatsApp'
 run = 'layout floating'
 
 [[on-window-detected]]
