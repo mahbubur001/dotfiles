@@ -200,6 +200,9 @@ run = 'layout floating'
 [workspace-to-monitor-force-assignment]
 1 = 'main'
 2 = 'main'
-3 = 'secondary'
+3 = 'main'
 4 = 'secondary'
+5 = 'secondary'
+6 = 'secondary'
+7 = 'secondary'
 
