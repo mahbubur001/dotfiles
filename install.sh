@@ -41,9 +41,7 @@ brew install lazygit
 brew install tmux
 brew install neovim
 brew install starship #https://github.com/starship/starship
-#brew install tree-sitter
 brew install tree #tree view of folder
-#brew install borders
 brew install stats
 brew install --cask appcleaner
 
@@ -58,14 +56,12 @@ brew install sqlite
 ## Casks
 brew install --cask google-chrome
 brew install --cask alfred
-brew install --cask amethyst
 brew install --cask alt-tab
-brew install --cask skype
 brew install --cask tableplus
 brew install --cask local
 
 brew install --cask raycast #https://github.com/raycast
-brew install --cask wezterm
+brew install --cask warp
 brew install --cask nikitabobko/tap/aerospace # windowmanager https://www.josean.com/posts/how-to-setup-aerospace-tiling-window-manager
 brew install --cask font-hack-nerd-font
 brew install --cask font-jetbrains-mono-nerd-font
