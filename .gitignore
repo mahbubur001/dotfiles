@@ -9,4 +9,5 @@ nvim/.config/nvim/sessions/
 .DS_Store
 .tmux
 **.cache
+.idea
 nvim/.config/nvim/lazy-lock.json
