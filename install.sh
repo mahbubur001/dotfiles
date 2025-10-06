@@ -40,8 +40,8 @@ brew install git
 brew install lazygit
 brew install tmux
 brew install neovim
-brew install starship #https://github.com/starship/starship
-brew install tree #tree view of folder
+brew install starship
+brew install tree
 brew install stats
 brew install --cask appcleaner
 
@@ -57,6 +57,7 @@ brew install sqlite
 brew install --cask google-chrome
 brew install --cask alfred
 brew install --cask alt-tab
+brew install --cask microsoft-teams
 brew install --cask tableplus
 brew install --cask local
 
@@ -65,11 +66,6 @@ brew install --cask warp
 brew install --cask nikitabobko/tap/aerospace # windowmanager https://www.josean.com/posts/how-to-setup-aerospace-tiling-window-manager
 brew install --cask font-hack-nerd-font
 brew install --cask font-jetbrains-mono-nerd-font
-#brew install --cask karabiner-elements #https://karabiner-elements.pqrs.org/
-#brew install --cask keycastr #https://github.com/keycastr/keycastr
-#brew install --cask betterdisplay #https://github.com/waydabber/BetterDisplay
-#brew install --cask linearmouse #https://linearmouse.app/
-#brew install --cask font-sf-pro
 
 
 csrutil status

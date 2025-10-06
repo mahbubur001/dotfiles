@@ -9,13 +9,12 @@ return {
       "gbprod/none-ls-shellcheck.nvim",
     },
     config = function()
-      require("null-ls").register(require("none-ls-shellcheck.diagnostics"))
-      require("null-ls").register(require("none-ls-shellcheck.code_actions"))
+      local none_ls = require("none-ls")
+      none_ls.register(require("none-ls-shellcheck.diagnostics"))
+      none_ls.register(require("none-ls-shellcheck.code_actions"))
 
       local mason_null_ls = require("mason-null-ls")
-      local null_ls = require("null-ls")
-
-      local null_ls_utils = require("null-ls.utils")
+      local none_ls_utils = require("none-ls.utils")
 
       mason_null_ls.setup({
         ensure_installed = {
@@ -36,14 +35,14 @@ return {
         },
       })
 
-      local formatting = null_ls.builtins.formatting
-      local diagnostics = null_ls.builtins.diagnostics
-      local code_actions = null_ls.builtins.code_actions
+      local formatting = none_ls.builtins.formatting
+      local diagnostics = none_ls.builtins.diagnostics
+      local code_actions = none_ls.builtins.code_actions
 
       -- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
-      null_ls.setup({
-        root_dir = null_ls_utils.root_pattern(".null-ls-root", "Makefile", ".git", "package.json"),
+      none_ls.setup({
+        root_dir = none_ls_utils.root_pattern(".none-ls-root", "Makefile", ".git", "package.json"),
 
         sources = {
           formatting.stylua,
