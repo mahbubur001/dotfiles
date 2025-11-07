@@ -3,7 +3,7 @@
 	email = mahbubur001@gmail.com
 [core]
 	editor = vim
-	excludesfile = /Users/mahbubur/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [pull]
 	ff = only
 [init]
@@ -22,4 +22,4 @@
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [commit]
-	template = /Users/mahbubur/.stCommitMsg
+	template = ~/.stCommitMsg
