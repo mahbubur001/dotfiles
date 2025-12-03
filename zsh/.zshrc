@@ -2,10 +2,6 @@
 
 # Brew
 #eval "$(brew shellenv)"
-if [[ -e "/usr/local/bin/brew" ]]; then
-  eval "$(/usr/local/bin/brew shellenv)"
-  export HOMEBREW_NO_AUTO_UPDATE=1
-fi
 if [[ -e "/opt/homebrew/bin/brew" ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
   export HOMEBREW_NO_AUTO_UPDATE=1
