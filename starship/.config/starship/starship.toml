@@ -5,7 +5,7 @@ command_timeout = 1000
 add_newline = false
 
 format = """
- =>\
+\
 $directory\
 ${custom.giturl}\
 $git_branch\
@@ -168,3 +168,4 @@ vimcmd_symbol = '[](bold fg:creen)'
 vimcmd_replace_one_symbol = '[](bold fg:purple)'
 vimcmd_replace_symbol = '[](bold fg:purple)'
 vimcmd_visual_symbol = '[](bold fg:lavender)'
+format = "\n$symbol "
