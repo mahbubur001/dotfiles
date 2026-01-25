@@ -60,6 +60,7 @@ brew install --cask alt-tab
 brew install --cask microsoft-teams
 brew install --cask tableplus
 brew install --cask local
+brew install --cask betterdisplay
 
 brew install --cask raycast #https://github.com/raycast
 brew install --cask warp
