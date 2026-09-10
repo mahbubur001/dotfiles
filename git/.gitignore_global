@@ -65,3 +65,5 @@ TODO.md
 
 # ignore dotfiles bare repository
 dotfiles
+
+**/.claude/settings.local.json
