@@ -67,3 +67,6 @@ TODO.md
 dotfiles
 
 **/.claude/settings.local.json
+
+# iRemote (VS Code): per-project deployment mappings, like PhpStorm .idea/deployment.xml
+.vscode/iremote.json
