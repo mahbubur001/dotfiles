@@ -3,7 +3,6 @@
 -- (see `dev` in config/lazy.lua), so changes made there are live without pushing.
 return {
   "mahbubur001/iremote",
-  branch = "feat/neovim", -- remove once merged into main
   name = "iremote",
   dev = true,
   build = "npm ci && npm run build",
