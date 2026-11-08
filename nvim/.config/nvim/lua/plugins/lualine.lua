@@ -49,6 +49,15 @@ return {
           { "fancy_searchcount" },
         },
         lualine_x = {
+          -- iRemote default server ("󰒍 Production ↑", ↑ = automatic upload on)
+          {
+            function()
+              return require("iremote").statusline()
+            end,
+            cond = function()
+              return package.loaded["iremote"] ~= nil
+            end,
+          },
           "fancy_lsp_servers",
           "fancy_diff",
           "progress",
