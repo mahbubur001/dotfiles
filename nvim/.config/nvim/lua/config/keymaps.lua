@@ -94,3 +94,9 @@ vim.keymap.set("n", "<Esc>", ":nohlsearch<CR>", opts)
 
 -- ctrl + x to cut full line
 vim.keymap.set("n", "<C-x>", "dd", opts)
+
+-- Neovim 0.12 ships undotree as an optional builtin plugin
+vim.keymap.set("n", "<leader>GU", function()
+  vim.cmd.packadd("nvim.undotree")
+  vim.cmd("Undotree")
+end, { desc = "Toggle UndoTree" })

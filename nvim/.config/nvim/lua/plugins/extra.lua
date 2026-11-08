@@ -5,79 +5,33 @@ return {
     opts = {},
   },
 
-  -- delete buffer
-  {
-    "famiu/bufdelete.nvim",
-    event = "VeryLazy",
-    config = function()
-      vim.keymap.set(
-        "n",
-        "Q",
-        ":lua require('bufdelete').bufdelete(0, false)<cr>",
-        { noremap = true, silent = true, desc = "Delete buffer" }
-      )
-    end,
-  },
-
-  -- comments
-  {
-    "numToStr/Comment.nvim",
-    opts = {},
-    lazy = false,
-  },
   -- useful when there are embedded languages in certain types of files (e.g. Vue or React)
   { "joosepalviste/nvim-ts-context-commentstring", lazy = true },
 
-  -- Neovim notifications and LSP progress messages
+  -- find and replace (replaces nvim-spectre)
   {
-    "j-hui/fidget.nvim",
-    branch = "legacy",
-    enabled = false,
-    config = function()
-      require("fidget").setup({
-        window = { blend = 0 },
-      })
-    end,
-  },
-
-  -- Smooth scrolling neovim plugin written in lua
-  {
-    "karb94/neoscroll.nvim",
-    -- enabled = false,
-    config = function()
-      require("neoscroll").setup({
-        stop_eof = true,
-        easing_function = "sine",
-        hide_cursor = true,
-        cursor_scrolls_alone = true,
-      })
-    end,
-  },
-
-  -- find and replace
-  {
-    "windwp/nvim-spectre",
-    enabled = false,
-    event = "BufRead",
+    "MagicDuck/grug-far.nvim",
+    cmd = "GrugFar",
+    opts = { headerMaxWidth = 80 },
     keys = {
       {
         "<leader>Rr",
         function()
-          require("spectre").open()
+          require("grug-far").open()
         end,
         desc = "Replace",
       },
       {
         "<leader>Rw",
         function()
-          require("spectre").open_visual({ select_word = true })
+          require("grug-far").open({ prefills = { search = vim.fn.expand("<cword>") } })
         end,
         desc = "Replace Word",
       },
       {
         "<leader>Rf",
         function()
-          require("spectre").open_file_search()
+          require("grug-far").open({ prefills = { paths = vim.fn.expand("%") } })
         end,
         desc = "Replace Buffer",
       },
@@ -112,16 +66,6 @@ return {
       },
     },
     { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
-    { -- optional completion source for require statements and module annotations
-      "hrsh7th/nvim-cmp",
-      opts = function(_, opts)
-        opts.sources = opts.sources or {}
-        table.insert(opts.sources, {
-          name = "lazydev",
-          group_index = 0, -- set group index to 0 to skip loading LuaLS completions
-        })
-      end,
-    },
   },
 
   -- Lorem Ipsum generator for Neovim
@@ -135,21 +79,6 @@ return {
         comma = 1,
       })
     end,
-  },
-
-  -- Indent guide for Neovim
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    enabled = false,
-    event = { "BufReadPost", "BufNewFile" },
-    version = "2.1.0",
-    opts = {
-      char = "┊",
-      -- char = "│",
-      filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy" },
-      show_trailing_blankline_indent = false,
-      show_current_context = false,
-    },
   },
 
   -- editor config support
@@ -291,7 +220,6 @@ return {
   {
     "fladson/vim-kitty",
     "MunifTanjim/nui.nvim",
-    "rcarriga/nvim-notify",
   },
   {
     "nvchad/showkeys",

@@ -4,9 +4,8 @@ return {
   dependencies = {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
-    { "j-hui/fidget.nvim",       opts = {} },
     { "b0o/schemastore.nvim" },
-    { "hrsh7th/cmp-nvim-lsp" },
+    "saghen/blink.cmp",
   },
   config = function()
     require("mason").setup({
@@ -48,7 +47,6 @@ return {
           { "<leader>lA", vim.lsp.buf.code_action, mode = "v",                desc = "Range Code Actions" },
           { "<leader>ls", vim.lsp.buf.signature_help,                        desc = "Display Signature Information" },
           { "<leader>lr", vim.lsp.buf.rename,                                desc = "Rename all references" },
-          { "<leader>lf", vim.lsp.buf.format,                                desc = "Format" },
           { "<leader>li", require("telescope.builtin").lsp_implementations,  desc = "Implementation" },
           { "<leader>lw", require("telescope.builtin").diagnostics,          desc = "Diagnostics" },
           { "<leader>lc", require("config.utils").copyFilePathAndLineNumber, desc = "Copy File Path and Line Number" },
@@ -106,7 +104,7 @@ return {
     -- local capabilities = vim.lsp.protocol.make_client_capabilities()
     -- capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
     local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+    capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
     -- mason-lspconfig v2 removed setup_handlers; configure via vim.lsp.config
     -- and let mason-lspconfig auto-enable installed servers.

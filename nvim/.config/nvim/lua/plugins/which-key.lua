@@ -15,6 +15,7 @@ return {
         mode = { "n", "v" },
         { "<leader>G", group = "Git" },
         { "<leader>R", group = "Replace" },
+        { "<leader>d", group = "Deployment" },
         { "<leader>l", group = "LSP" },
         { "<leader>t", group = "Test" },
         { "<leader>s", group = "Search" },

@@ -83,7 +83,7 @@ cd $HOME/dotfiles || exit
 
 # Stow dotfiles packages
 echo "Stowing dotfiles..."
-stow -t ~ git nvim tmux starship aerospace karabiner neovim wezterm zsh stow
+stow -t ~ git nvim tmux starship aerospace karabiner neovim wezterm zsh stow warp
 
 echo "Dotfiles setup complete!"
 

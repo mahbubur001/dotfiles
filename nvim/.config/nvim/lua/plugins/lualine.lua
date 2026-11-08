@@ -24,7 +24,7 @@ return {
             "help",
             "neo-tree",
             "Trouble",
-            "spectre_panel",
+            "grug-far",
             "toggleterm",
           },
           winbar = {},
