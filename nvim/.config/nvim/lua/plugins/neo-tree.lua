@@ -18,8 +18,6 @@ local function set_highlights()
   hl("NeoTreeTabSeparatorInactive", { link = "TabLine" })
 end
 
--- iRemote's Remote Host tab (local checkout; see lua/plugins/iremote.lua)
-local has_iremote = vim.fn.isdirectory(vim.fn.expand("~/dev/iRemote")) == 1
 
 return {
   "nvim-neo-tree/neo-tree.nvim",
@@ -48,6 +46,8 @@ return {
       { source = "document_symbols", display_name = "  Symbols " },
     }
     local extra_handlers = {}
+    -- iRemote's Remote Host tab (lua/plugins/iremote.lua), when the plugin is installed
+    local has_iremote = pcall(require, "iremote")
     if has_iremote then
       table.insert(sources, "iremote.neotree")
       table.insert(selector, { source = "iremote", display_name = " 󰒍 Remote " })

@@ -17,6 +17,11 @@ require("lazy").setup({import = "plugins"}, {
     missing = true,
     colorscheme = { "catppuccin", "habamax" }
   },
+  -- plugins marked `dev = true` load from ~/dev/<name> when it exists, else from GitHub
+  dev = {
+    path = "~/dev",
+    fallback = true,
+  },
   -- luarocks isn't installed; no plugin here needs rocks
   rocks = {
     enabled = false,

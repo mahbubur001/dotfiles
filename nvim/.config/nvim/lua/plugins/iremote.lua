@@ -1,11 +1,11 @@
 -- iRemote: PhpStorm-style deployment (SFTP/FTP/FTPS/WebDAV), sharing .vscode/iremote.json with the VS Code extension.
--- Local checkout of https://github.com/mahbubur001/iremote; skipped on machines without it.
-local dir = vim.fn.expand("~/dev/iRemote")
-
+-- Installed from GitHub; with `dev = true` lazy.nvim uses the local checkout at ~/dev/iremote instead when it exists
+-- (see `dev` in config/lazy.lua), so changes made there are live without pushing.
 return {
-  dir = dir,
+  "mahbubur001/iremote",
+  branch = "feat/neovim", -- remove once merged into main
   name = "iremote",
-  cond = vim.fn.isdirectory(dir) == 1,
+  dev = true,
   build = "npm ci && npm run build",
   event = { "BufReadPost", "BufNewFile" },
   cmd = "IRemote",
