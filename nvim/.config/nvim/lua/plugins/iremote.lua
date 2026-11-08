@@ -11,6 +11,8 @@ return {
   cmd = "IRemote",
   opts = {},
   keys = {
+    { "<leader>dm", function() require("iremote").menu() end, desc = "iRemote menu" },
+    { "<leader>de", function() require("iremote").settings() end, desc = "Deployment settings" },
     { "<leader>du", function() require("iremote").upload() end, desc = "Upload to default server" },
     { "<leader>dd", function() require("iremote").download() end, desc = "Download from default server" },
     { "<leader>dc", function() require("iremote").compare() end, desc = "Compare with deployed version" },
