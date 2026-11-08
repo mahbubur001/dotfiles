@@ -17,6 +17,8 @@ return {
     bigfile = { enabled = true },
     quickfile = { enabled = true },
     input = { enabled = true },
+    -- picker only as the vim.ui.select UI (arrow keys / fuzzy filter); telescope stays the file finder
+    picker = { enabled = true, ui_select = true },
     scroll = { enabled = true },
     lazygit = { enabled = true },
     notifier = {
@@ -50,6 +52,12 @@ return {
       },
     },
   },
+  init = function()
+    -- route every vim.ui.select (iRemote, LSP code actions, ...) through the snacks picker from the start
+    vim.ui.select = function(...)
+      return Snacks.picker.select(...)
+    end
+  end,
   keys = {
     { "Q", function() Snacks.bufdelete() end, desc = "Delete buffer" },
     { "<leader>Gg", function() Snacks.lazygit() end, desc = "Lazygit" },

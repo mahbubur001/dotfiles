@@ -18,6 +18,9 @@ local function set_highlights()
   hl("NeoTreeTabSeparatorInactive", { link = "TabLine" })
 end
 
+-- iRemote's Remote Host tab (local checkout; see lua/plugins/iremote.lua)
+local has_iremote = vim.fn.isdirectory(vim.fn.expand("~/dev/iRemote")) == 1
+
 return {
   "nvim-neo-tree/neo-tree.nvim",
   dependencies = {
@@ -37,8 +40,23 @@ return {
       callback = set_highlights,
     })
 
+    local sources = { "filesystem", "buffers", "git_status", "document_symbols" }
+    local selector = {
+      { source = "filesystem", display_name = " 󰉓 Files " },
+      { source = "buffers", display_name = " 󰈚 Bufs " },
+      { source = "git_status", display_name = " 󰊢 Git " },
+      { source = "document_symbols", display_name = "  Symbols " },
+    }
+    local extra_handlers = {}
+    if has_iremote then
+      table.insert(sources, "iremote.neotree")
+      table.insert(selector, { source = "iremote", display_name = " 󰒍 Remote " })
+      -- create / delete / rename in neo-tree → default server (follows the project's auto-upload options)
+      extra_handlers = require("iremote").neo_tree_event_handlers()
+    end
+
     require("neo-tree").setup({
-      sources = { "filesystem", "buffers", "git_status", "document_symbols" },
+      sources = sources,
       close_if_last_window = true,
       popup_border_style = "rounded",
       enable_git_status = true,
@@ -177,15 +195,10 @@ return {
         tabs_layout = "equal",
         separator = { left = "", right = "" },
         show_separator_on_edge = true,
-        sources = {
-          { source = "filesystem", display_name = " 󰉓 Files " },
-          { source = "buffers", display_name = " 󰈚 Bufs " },
-          { source = "git_status", display_name = " 󰊢 Git " },
-          { source = "document_symbols", display_name = "  Symbols " },
-        },
+        sources = selector,
       },
 
-      event_handlers = {
+      event_handlers = vim.list_extend({
         {
           event = "neo_tree_window_after_open",
           handler = function(args)
@@ -202,7 +215,7 @@ return {
             end
           end,
         },
-      },
+      }, extra_handlers),
     })
   end,
 }
