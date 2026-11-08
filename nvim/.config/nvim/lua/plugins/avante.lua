@@ -12,7 +12,6 @@ return {
   -- Also note that downloading prebuilt binary is a lot faster comparing to compiling from source.
   build = ":AvanteBuild source=false",
   dependencies = {
-    "stevearc/dressing.nvim",
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
     --- The below dependencies are optional,

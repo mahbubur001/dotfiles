@@ -3,8 +3,8 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
-    "antoinemadec/FixCursorHold.nvim",
-    "nvim-neotest/neotest-go",
+    "nvim-neotest/nvim-nio",
+    "fredrikaverpil/neotest-golang",
   },
   keys = {
     {
@@ -17,7 +17,7 @@ return {
     {
       "<leader>tT",
       function()
-        require("neotest").run.run(vim.loop.cwd())
+        require("neotest").run.run(vim.uv.cwd())
       end,
       desc = "Run All Test Files",
     },
@@ -74,7 +74,7 @@ return {
     require("neotest").setup({
       -- your neotest config here
       adapters = {
-        require("neotest-go"),
+        require("neotest-golang"),
       },
       icons = {
         child_indent = "│",

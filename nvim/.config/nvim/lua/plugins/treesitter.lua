@@ -1,7 +1,9 @@
 -- Highlight, edit, and navigate code
 return {
   'nvim-treesitter/nvim-treesitter',
+  version = false,
   build = ':TSUpdate',
+  event = { 'BufReadPost', 'BufNewFile' },
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
   },
@@ -10,6 +12,11 @@ return {
       -- Add languages to be installed here that you want installed for treesitter
       ensure_installed = {
         'lua',
+        'luadoc',
+        'luap',
+        'query',
+        'rust',
+        'proto',
         'python',
         'javascript',
         'typescript',
@@ -63,6 +70,10 @@ return {
             ['if'] = '@function.inner',
             ['ac'] = '@class.outer',
             ['ic'] = '@class.inner',
+            ['ai'] = '@conditional.outer',
+            ['ii'] = '@conditional.inner',
+            ['al'] = '@loop.outer',
+            ['il'] = '@loop.inner',
           },
         },
         move = {

@@ -9,12 +9,12 @@ return {
       "gbprod/none-ls-shellcheck.nvim",
     },
     config = function()
-      local none_ls = require("none-ls")
+      local none_ls = require("null-ls")
       none_ls.register(require("none-ls-shellcheck.diagnostics"))
       none_ls.register(require("none-ls-shellcheck.code_actions"))
 
       local mason_null_ls = require("mason-null-ls")
-      local none_ls_utils = require("none-ls.utils")
+      local none_ls_utils = require("null-ls.utils")
 
       mason_null_ls.setup({
         ensure_installed = {
@@ -22,8 +22,6 @@ return {
           "stylua", -- lua formatter
           "eslint_d", -- js linter
           "golangci_lint", -- go linter
-          "terraform_fmt", -- terraform formatter
-          "terraform_validate", -- terraform linter
           "shellcheck", -- shell linter
           "yamllint", -- yaml linter
           "buf", -- buf formatter
@@ -32,6 +30,7 @@ return {
           "yamlfmt", -- yaml formatter
           -- "spell", -- spell checker
           "black", -- python formatter
+          "markdownlint_cli2", -- markdown linter
         },
       })
 

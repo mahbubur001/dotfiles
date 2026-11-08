@@ -36,7 +36,6 @@ return {
     filetypes = { "vim" },
   },
   -- tsserver = {},
-  ts_ls = {},
   gopls = {},
   pyright = {},
 

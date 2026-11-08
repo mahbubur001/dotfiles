@@ -23,7 +23,7 @@ local function run_make_command(target)
     vim.cmd("new")
     local buf = vim.api.nvim_get_current_buf()
     vim.api.nvim_buf_set_lines(buf, 0, -1, false, vim.split(output, "\n"))
-    vim.api.nvim_buf_set_option(buf, "modifiable", false)
+    vim.bo[buf].modifiable = false
     vim.api.nvim_buf_set_name(buf, "Make Output: " .. target)
 end
 

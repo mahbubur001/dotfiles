@@ -28,16 +28,6 @@ return {
   -- useful when there are embedded languages in certain types of files (e.g. Vue or React)
   { "joosepalviste/nvim-ts-context-commentstring", lazy = true },
 
-  -- Neovim plugin to improve the default vim.ui interfaces
-  {
-    "stevearc/dressing.nvim",
-    dependencies = { "MunifTanjim/nui.nvim" },
-    opts = {},
-    config = function()
-      require("dressing").setup()
-    end,
-  },
-
   -- Neovim notifications and LSP progress messages
   {
     "j-hui/fidget.nvim",
@@ -199,37 +189,11 @@ return {
     end,
   },
 
+  -- winbar breadcrumbs (replaces archived barbecue.nvim)
   {
-    "utilyre/barbecue.nvim",
-    name = "barbecue",
-    version = "*",
-    dependencies = {
-      "SmiteshP/nvim-navic",
-      "nvim-tree/nvim-web-devicons", -- optional dependency
-    },
-    opts = {
-      -- configurations go here
-    },
-    config = function()
-      require("barbecue").setup({
-        create_autocmd = false, -- prevent barbecue from updating itself automatically
-      })
-
-      vim.api.nvim_create_autocmd({
-        "WinScrolled", -- or WinResized on NVIM-v0.9 and higher
-        "BufWinEnter",
-        "CursorHold",
-        "InsertLeave",
-
-        -- include this if you have set `show_modified` to `true`
-        -- "BufModifiedSet",
-      }, {
-        group = vim.api.nvim_create_augroup("barbecue.updater", {}),
-        callback = function()
-          require("barbecue.ui").update()
-        end,
-      })
-    end,
+    "Bekaboo/dropbar.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    opts = {},
   },
   -- persist sessions
   {

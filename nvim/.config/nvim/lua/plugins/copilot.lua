@@ -10,9 +10,10 @@ return {
                     enabled = true,
                     auto_refresh = true,
                     keymap = {
-                        jump_next = "<c-j>",
-                        jump_prev = "<c-k>",
-                        accept = "<c-a>",
+                        -- panel keys must differ from suggestion keys (copilot.lua rejects duplicates)
+                        jump_next = "]]",
+                        jump_prev = "[[",
+                        accept = "<CR>",
                         refresh = "r",
                         open = "<M-CR>",
                     },

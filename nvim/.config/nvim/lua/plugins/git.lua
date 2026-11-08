@@ -130,19 +130,19 @@ return {
         desc = "Undo Stage Hunk"
       },
       {
-        "<leader>Go", require("telescope.builtin").git_status,
+        "<leader>Go", function() require("telescope.builtin").git_status() end,
         desc = "Open changed file"
       },
       {
-        "<leader>Gb", require("telescope.builtin").git_branches,
+        "<leader>Gb", function() require("telescope.builtin").git_branches() end,
         desc = "Checkout branch"
       },
       {
-        "<leader>Gc", require("telescope.builtin").git_commits,
+        "<leader>Gc", function() require("telescope.builtin").git_commits() end,
         desc = "Checkout commit"
       },
       {
-        "<leader>GC", require("telescope.builtin").git_bcommits,
+        "<leader>GC", function() require("telescope.builtin").git_bcommits() end,
         desc = "Checkout commit(for current file)"
       },
       {
