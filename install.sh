@@ -62,7 +62,6 @@ brew install sqlite
 
 ## Casks
 echo "Installing Brew casks..."
-brew install --cask ghostty
 brew install --cask warp
 brew install --cask stats
 brew install --cask appcleaner # https://freemacsoft.net/appcleaner/
@@ -88,7 +87,7 @@ cd "$HOME/dotfiles" || exit
 
 # Stow dotfiles packages
 echo "Stowing dotfiles..."
-stow -t ~ git nvim tmux starship aerospace zsh stow warp ghostty lf htop ranger phpcs
+stow -t ~ git nvim tmux starship aerospace zsh stow warp lf htop ranger phpcs
 
 # tmux plugin manager (path used by tmux.conf); install plugins with prefix + I
 TPM_DIR="$HOME/.config/tmux/.tmux/plugins/tpm"
