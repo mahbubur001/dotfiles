@@ -12,6 +12,9 @@ export PATH="$HOME/.config/zsh:$PATH"
 
 export TMUX_CONF=~/.config/tmux/tmux.conf
 
+# Starship (prompt for non-Warp terminals: editor terminals, tmux; Warp uses its own prompt)
+eval "$(starship init zsh)"
+export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
 
 # NOTE: Zoxide
 eval "$(zoxide init zsh)"
