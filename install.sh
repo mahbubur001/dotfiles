@@ -74,6 +74,7 @@ brew install --cask local
 brew install --cask betterdisplay
 brew install --cask raycast
 brew install --cask nikitabobko/tap/aerospace # https://www.josean.com/posts/how-to-setup-aerospace-tiling-window-manager
+brew install --cask amethyst # https://github.com/ianyh/Amethyst
 brew install --cask font-hack-nerd-font
 brew install --cask font-jetbrains-mono-nerd-font
 
@@ -87,7 +88,7 @@ cd "$HOME/dotfiles" || exit
 
 # Stow dotfiles packages
 echo "Stowing dotfiles..."
-stow -t ~ git nvim tmux starship aerospace zsh stow warp lf htop ranger phpcs
+stow -t ~ git nvim tmux starship aerospace amethyst zsh stow warp lf htop ranger phpcs
 
 # tmux plugin manager (path used by tmux.conf); install plugins with prefix + I
 TPM_DIR="$HOME/.config/tmux/.tmux/plugins/tpm"
