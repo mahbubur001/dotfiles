@@ -1,39 +1,48 @@
 #!/bin/bash
-# Prepare install file and run
-# % chmod 755 install.sh
-#./install.sh
+# Fresh-machine bootstrap: Xcode CLT, Homebrew + packages, dotfiles, stow.
+# Usage: ./install.sh
 
-# Install xCode cli tools
+# Xcode command line tools
 if [[ "$(uname)" == "Darwin" ]]; then
-    echo "macOS deteted..."
+    echo "macOS detected..."
 
     if xcode-select -p &>/dev/null; then
-        echo "Xcode already installed"
+        echo "Xcode command line tools already installed"
     else
-        echo "Installing commandline tools..."
+        echo "Installing command line tools..."
         xcode-select --install
+        # The installer runs in a GUI dialog and returns immediately
+        until xcode-select -p &>/dev/null; do
+            read -r -p "Press Enter once the command line tools installer has finished..."
+        done
     fi
 fi
 
 # Homebrew
-## Install
-echo "Installing Brew..."
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+if ! command -v brew &>/dev/null; then
+    echo "Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+# Put brew on PATH for the rest of this script (Apple Silicon: /opt/homebrew, Intel: /usr/local)
+if [[ -x /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -x /usr/local/bin/brew ]]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
 brew analytics off
 
-
 ## Formulae
-echo "Installing Brew Formulae..."
-### Must Have things
+echo "Installing Brew formulae..."
+### Shell
+brew install zsh
 brew install zsh-autosuggestions
-brew install zsh-autocomplete
 brew install zsh-syntax-highlighting
 brew install stow
 brew install fzf
-brew install bat #bat supports syntax highlighting for a large number of programming and markup languages: https://github.com/sharkdp/bat?tab=readme-ov-file
-brew install fd #https://github.com/sharkdp/fd
-brew install zoxide #https://github.com/ajeetdsouza/zoxide
-brew install --cask ghostty
+brew install bat    # https://github.com/sharkdp/bat
+brew install fd     # https://github.com/sharkdp/fd
+brew install eza    # fzf directory previews in .zshrc
+brew install zoxide # https://github.com/ajeetdsouza/zoxide
 
 ### Terminal
 brew install git
@@ -42,18 +51,21 @@ brew install tmux
 brew install neovim
 brew install starship
 brew install tree
-brew install stats
-brew install --cask appcleaner
+brew install lf
+brew install ranger
+brew install htop
 
-
-### dev things
+### Dev
 brew install node
 brew install nvm
 brew install sqlite
 
-
-
 ## Casks
+echo "Installing Brew casks..."
+brew install --cask ghostty
+brew install --cask warp
+brew install --cask stats
+brew install --cask appcleaner # https://freemacsoft.net/appcleaner/
 brew install --cask google-chrome
 brew install --cask alfred
 brew install --cask alt-tab
@@ -61,34 +73,28 @@ brew install --cask microsoft-teams
 brew install --cask tableplus
 brew install --cask local
 brew install --cask betterdisplay
-
-brew install --cask raycast #https://github.com/raycast
-brew install --cask warp
-brew install --cask nikitabobko/tap/aerospace # windowmanager https://www.josean.com/posts/how-to-setup-aerospace-tiling-window-manager
+brew install --cask raycast
+brew install --cask nikitabobko/tap/aerospace # https://www.josean.com/posts/how-to-setup-aerospace-tiling-window-manager
 brew install --cask font-hack-nerd-font
 brew install --cask font-jetbrains-mono-nerd-font
 
-
-csrutil status
-echo "Installation complete..."
-
 # Clone dotfiles repository
 if [ ! -d "$HOME/dotfiles" ]; then
-  echo "Cloning dotfiles repository..."
-  git clone https://github.com/mahbubur001/dotfiles.git $HOME/dotfiles
+    echo "Cloning dotfiles repository..."
+    git clone https://github.com/mahbubur001/dotfiles.git "$HOME/dotfiles"
 fi
 
-# Navigate to dotfiles directory
-cd $HOME/dotfiles || exit
+cd "$HOME/dotfiles" || exit
 
 # Stow dotfiles packages
 echo "Stowing dotfiles..."
-stow -t ~ git nvim tmux starship aerospace wezterm zsh stow warp ghostty lf htop ranger neofetch phpcs
+stow -t ~ git nvim tmux starship aerospace zsh stow warp ghostty lf htop ranger phpcs
+
+# tmux plugin manager (path used by tmux.conf); install plugins with prefix + I
+TPM_DIR="$HOME/.config/tmux/.tmux/plugins/tpm"
+if [ ! -d "$TPM_DIR" ]; then
+    echo "Installing tmux plugin manager..."
+    git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
+fi
 
 echo "Dotfiles setup complete!"
-
-## Applications
-brew install zsh
-
-#App Cleaner
-# https://freemacsoft.net/appcleaner/
