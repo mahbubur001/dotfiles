@@ -30,7 +30,6 @@ stow -R -t ~ <package>   # relink after adding or moving files
 | `htop`, `lf`, `ranger` | CLI tools |
 | `nvim` | Neovim (lazy.nvim) |
 | `phpcs` | Global PHP_CodeSniffer ruleset |
-| `starship` | Prompt |
 | `stow` | Stow's global ignore list |
 | `tmux` | tmux (plugins via TPM) |
 | `warp` | Warp tab configs (settings use Warp Settings Sync) |

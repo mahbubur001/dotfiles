@@ -12,11 +12,6 @@ export PATH="$HOME/.config/zsh:$PATH"
 
 export TMUX_CONF=~/.config/tmux/tmux.conf
 
-# Starship
-eval "$(starship init zsh)"
-# set Starship PATH
-export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
-
 
 # NOTE: Zoxide
 eval "$(zoxide init zsh)"
