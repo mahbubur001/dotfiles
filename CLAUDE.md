@@ -10,13 +10,13 @@ macOS dotfiles managed with **GNU Stow**. Each top-level directory is a stow pac
 
 - Link a package: `stow -t ~ <package>` (run from repo root). Unlink: `stow -D -t ~ <package>`. Re-link after adding/moving files: `stow -R -t ~ <package>`.
 - Adding a new config: create `<package>/<path relative to $HOME>` (e.g. `foo/.config/foo/config`), then stow it. Moving an existing real file into the repo requires removing the original first or stow will refuse with a conflict.
-- `install.sh` is a fresh-machine bootstrap (Xcode CLT, Homebrew + formulae/casks, clone, stow). It runs non-idempotent installers; don't run it to test a change. Its stow line references `karabiner` and `neovim` packages that don't exist in the repo.
+- `install.sh` is a fresh-machine bootstrap (Xcode CLT, Homebrew + formulae/casks, clone, stow). It runs non-idempotent installers; don't run it to test a change.
 - Reload: tmux `prefix r` (sources `~/.config/tmux/tmux.conf`); zsh `exec zsh`; Neovim changes via lazy.nvim `:Lazy`.
 - There are no builds, tests, or linters for the repo itself. For Lua, `stylua` is the formatter (via conform.nvim).
 
 ## Layout notes
 
-- `stow/.stow-global-ignore` is itself stowed to `~/.stow-global-ignore` and controls what stow skips. It only lists `.DS_Store`, and its presence replaces stow's built-in default ignore list (so `.git`, `README*`, etc. inside a package would be linked).
+- `stow/.stow-global-ignore` is itself stowed to `~/.stow-global-ignore` and controls what stow skips. Its presence replaces stow's built-in default ignore list, so it re-lists those defaults (`.git`, `README.*`, `LICENSE.*`, ...); keep that in mind when adding entries.
 - `.gitignore` excludes `nvim/.config/nvim/lazy-lock.json`, nvim `sessions/`, `plugin/`, and tmux `plugins/` (TPM-managed, installed to `~/.config/tmux/.tmux/plugins/tpm`).
 - `git/.gitignore_global` is the global git excludes file (wired via `core.excludesfile` in `git/.gitconfig`).
 - `zsh/.config/zsh/` is on `$PATH` (set in `.zshrc`), so scripts there (e.g. `tmux-sessionizer`, bound to tmux `prefix f`) are callable directly. Aliases live in `aliases.zsh`.
