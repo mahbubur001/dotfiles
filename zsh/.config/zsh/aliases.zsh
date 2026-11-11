@@ -1,8 +1,7 @@
 # System
 alias shutdown='sudo shutdown now'
 alias restart='sudo reboot'
-alias suspend='sudo pm-suspend'
-alias sleep='pmset sleepnow'
+alias zzz='pmset sleepnow'
 alias c='clear'
 alias e='exit'
 alias o='open .'
@@ -44,8 +43,8 @@ alias gqcp='quick_commit push'
 
 
 # Folders
-alias doc="$HOME/Documents"
-alias dow="$HOME/Downloads"
+alias doc='cd ~/Documents'
+alias dow='cd ~/Downloads'
 
 # Ranger
 alias r=". ranger"
@@ -78,5 +77,5 @@ alias n="nvim"
 alias lg="lazygit"
 
 #svn
-alias svnadd="svn st | awk '/\?/ {print $2}' | xargs svn add"
-alias svnrm="svn st | awk '/\!/ {print $2}' | xargs svn rm --force"
+alias svnadd='svn st | awk '\''/^\?/ {print $2}'\'' | xargs svn add'
+alias svnrm='svn st | awk '\''/^!/ {print $2}'\'' | xargs svn rm --force'

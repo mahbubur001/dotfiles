@@ -1,5 +1,5 @@
 #!/bin/bash
-# Fresh-machine bootstrap: Xcode CLT, Homebrew + packages, dotfiles, stow.
+# Fresh-machine bootstrap: Xcode CLT, Homebrew, dotfiles, Brewfile packages, stow.
 # Usage: ./install.sh
 
 # Xcode command line tools
@@ -31,58 +31,17 @@ elif [[ -x /usr/local/bin/brew ]]; then
 fi
 brew analytics off
 
-## Formulae
-echo "Installing Brew formulae..."
-### Shell
-brew install zsh
-brew install zsh-autosuggestions
-brew install zsh-syntax-highlighting
-brew install stow
-brew install fzf
-brew install bat    # https://github.com/sharkdp/bat
-brew install fd     # https://github.com/sharkdp/fd
-brew install eza    # fzf directory previews in .zshrc
-brew install zoxide # https://github.com/ajeetdsouza/zoxide
-
-### Terminal
-brew install git
-brew install lazygit
-brew install tmux
-brew install neovim
-brew install tree
-brew install lf
-brew install ranger
-brew install htop
-
-### Dev
-brew install node
-brew install nvm
-brew install sqlite
-
-## Casks
-echo "Installing Brew casks..."
-brew install --cask warp
-brew install --cask stats
-brew install --cask appcleaner # https://freemacsoft.net/appcleaner/
-brew install --cask google-chrome
-brew install --cask alfred
-brew install --cask alt-tab
-brew install --cask microsoft-teams
-brew install --cask tableplus
-brew install --cask local
-brew install --cask betterdisplay
-brew install --cask raycast
-brew install --cask nikitabobko/tap/aerospace # https://www.josean.com/posts/how-to-setup-aerospace-tiling-window-manager
-brew install --cask font-hack-nerd-font
-brew install --cask font-jetbrains-mono-nerd-font
-
-# Clone dotfiles repository
+# Clone dotfiles repository (git comes with the command line tools)
 if [ ! -d "$HOME/dotfiles" ]; then
     echo "Cloning dotfiles repository..."
     git clone https://github.com/mahbubur001/dotfiles.git "$HOME/dotfiles"
 fi
 
 cd "$HOME/dotfiles" || exit
+
+# Packages and apps (see Brewfile)
+echo "Installing Brewfile packages..."
+brew bundle --file="$HOME/dotfiles/Brewfile"
 
 # Stow dotfiles packages
 echo "Stowing dotfiles..."

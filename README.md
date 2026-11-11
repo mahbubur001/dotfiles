@@ -11,7 +11,7 @@ git clone https://github.com/mahbubur001/dotfiles.git ~/dotfiles
 cd ~/dotfiles && ./install.sh
 ```
 
-`install.sh` installs the Xcode command line tools, Homebrew and packages, links the configs with stow, and installs the tmux plugin manager (then press `prefix + I` in tmux to install plugins).
+`install.sh` installs the Xcode command line tools and Homebrew, installs everything in `Brewfile` (`brew bundle`), links the configs with stow, and installs the tmux plugin manager (then press `prefix + I` in tmux to install plugins).
 
 ## Usage
 

@@ -10,7 +10,7 @@ macOS dotfiles managed with **GNU Stow**. Each top-level directory is a stow pac
 
 - Link a package: `stow -t ~ <package>` (run from repo root). Unlink: `stow -D -t ~ <package>`. Re-link after adding/moving files: `stow -R -t ~ <package>`.
 - Adding a new config: create `<package>/<path relative to $HOME>` (e.g. `foo/.config/foo/config`), then stow it. Moving an existing real file into the repo requires removing the original first or stow will refuse with a conflict.
-- `install.sh` is a fresh-machine bootstrap (Xcode CLT, Homebrew + formulae/casks, clone, stow). It runs non-idempotent installers; don't run it to test a change.
+- `install.sh` is a fresh-machine bootstrap (Xcode CLT, Homebrew, clone, `brew bundle` from `Brewfile`, stow, TPM). Add new packages/apps to `Brewfile`, not `install.sh`; `brew bundle check --file Brewfile` shows what's missing. It runs non-idempotent installers; don't run it to test a change.
 - Reload: tmux `prefix r` (sources `~/.config/tmux/tmux.conf`); zsh `exec zsh`; Neovim changes via lazy.nvim `:Lazy`.
 - There are no builds, tests, or linters for the repo itself. For Lua, `stylua` is the formatter (via conform.nvim).
 
