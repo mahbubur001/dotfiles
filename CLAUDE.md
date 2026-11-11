@@ -20,7 +20,7 @@ macOS dotfiles managed with **GNU Stow**. Each top-level directory is a stow pac
 - `.gitignore` excludes `nvim/.config/nvim/lazy-lock.json`, nvim `sessions/`, `plugin/`, and tmux `plugins/` (TPM-managed, installed to `~/.config/tmux/.tmux/plugins/tpm`).
 - `git/.gitignore_global` is the global git excludes file (wired via `core.excludesfile` in `git/.gitconfig`).
 - `zsh/.config/zsh/` is on `$PATH` (set in `.zshrc`), so scripts there (e.g. `tmux-sessionizer`, bound to tmux `prefix f`) are callable directly. Aliases live in `aliases.zsh`.
-- `vscode/.vscode/` and `phpcs/` hold PHP coding-standard configs (phpcs, php-cs-fixer).
+- `phpcs/` is the global PHP_CodeSniffer ruleset (stowed). `vscode/.vscode/` holds per-project PHP templates (phpcs.xml, .php-cs-fixer.php) and is intentionally not stowed.
 
 ## Neovim (`nvim/.config/nvim`)
 
