@@ -1,7 +1,20 @@
 return {
   {
+    -- morhetz/gruvbox, local copy from ~/Downloads/gruvbox-master
+    dir = vim.fn.stdpath("data") .. "/themes/gruvbox",
+    name = "gruvbox",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.o.background = "dark"
+      vim.g.gruvbox_contrast_dark = "hard"
+      vim.cmd.colorscheme("gruvbox")
+    end,
+  },
+
+  {
     "sainnhe/gruvbox-material",
-    enabled = true,
+    enabled = false,
     priority = 1000,
     config = function()
       vim.g.gruvbox_material_transparent_background = 0
