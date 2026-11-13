@@ -35,6 +35,7 @@ stow -R -t ~ <package>   # relink after adding or moving files
 | `tmux` | tmux (plugins via TPM) |
 | `warp` | Warp tab configs (settings use Warp Settings Sync) |
 | `zsh` | `.zshrc`, aliases, helper scripts |
+| `zed` | Zed `settings.json` (link only the file: `prompts/` and `themes/` stay machine-local) |
 | `vscode` | PHP config templates (not stowed) |
 
 ## Extras

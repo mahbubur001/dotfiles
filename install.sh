@@ -45,7 +45,7 @@ brew bundle --file="$HOME/dotfiles/Brewfile"
 
 # Stow dotfiles packages
 echo "Stowing dotfiles..."
-stow -t ~ git nvim tmux starship aerospace zsh stow warp lf htop ranger phpcs
+stow -t ~ git nvim tmux starship aerospace zsh stow warp lf htop ranger phpcs zed
 
 # tmux plugin manager (path used by tmux.conf); install plugins with prefix + I
 TPM_DIR="$HOME/.config/tmux/.tmux/plugins/tpm"
