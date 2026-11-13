@@ -7,6 +7,9 @@ if [[ -e "/opt/homebrew/bin/brew" ]]; then
   export HOMEBREW_NO_AUTO_UPDATE=1
 fi
 
+# Rust (rustup)
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
+
 # Add local ~/scripts to the PATH
 export PATH="$HOME/.config/zsh:$PATH"
 
