@@ -2,8 +2,8 @@
 # PhpStorm-style scratch files for Zed. Scratches live in Zed's user data folder, outside every project, and the
 # folder is added to the current Zed project so it shows as "scratches" in the project panel.
 #
-#   scratch new    pick a file type, create scratch_N.<ext>, open it   (Zed task "New scratch file", ⇧⌘N)
-#   scratch show   add the scratches folder to the current project    (Zed task "Show scratch files")
+#   scratch new <ext>   create scratch_N.<ext> and open it   (Zed tasks "scratch: PHP", "scratch: JSON", … — ⇧⌘N)
+#   scratch show        add the scratches folder to the current project   (Zed task "scratch: show files")
 set -euo pipefail
 
 if [[ "$(uname)" == Darwin ]]; then
@@ -17,28 +17,6 @@ zed_cli() {
   if command -v zed >/dev/null; then zed "$@"
   elif [[ -x /Applications/Zed.app/Contents/MacOS/cli ]]; then /Applications/Zed.app/Contents/MacOS/cli "$@"
   else echo "zed CLI not found (run 'zed: install cli' in Zed)" >&2; exit 1
-  fi
-}
-
-# "Label|extension" pairs shown in the picker.
-types=(
-  "PHP|php" "JSON|json" "Markdown|md" "Plain Text|txt" "JavaScript|js" "TypeScript|ts" "HTML|html" "CSS|css"
-  "SQL|sql" "Shell Script|sh" "YAML|yaml" "XML|xml" "SVG|svg" "Python|py"
-)
-
-pick_type() {
-  local last labels=() t
-  last=$(cat "$dir/.last-type" 2>/dev/null || echo "PHP")
-  for t in "${types[@]}"; do labels+=("${t%%|*}"); done
-  if [[ "$(uname)" == Darwin ]]; then
-    local list
-    list=$(printf '"%s",' "${labels[@]}")
-    osascript -e 'activate' \
-      -e "choose from list {${list%,}} with title \"New Scratch File\" with prompt \"File type:\" default items {\"$last\"}"
-  elif command -v zenity >/dev/null; then
-    zenity --list --title "New Scratch File" --column "File type" "${labels[@]}" 2>/dev/null || echo false
-  else
-    echo "$last"
   fi
 }
 
@@ -56,11 +34,8 @@ next_name() {
 
 case "${1:-new}" in
   new)
-    label=$(pick_type)
-    [[ -z "$label" || "$label" == false ]] && exit 0
-    ext=txt
-    for t in "${types[@]}"; do [[ "${t%%|*}" == "$label" ]] && ext=${t##*|}; done
-    echo "$label" >"$dir/.last-type"
+    ext=${2:-txt}
+    [[ "$ext" =~ ^[A-Za-z0-9]+$ ]] || { echo "bad extension: $ext" >&2; exit 2; }
     file="$dir/$(next_name).$ext"
     case "$ext" in
       php) printf '<?php\n\n' >"$file" ;;
@@ -73,6 +48,6 @@ case "${1:-new}" in
     zed_cli --add "$dir"
     ;;
   *)
-    echo "usage: scratch [new|show]" >&2; exit 2
+    echo "usage: scratch new <ext> | scratch show" >&2; exit 2
     ;;
 esac

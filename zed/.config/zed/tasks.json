@@ -1,23 +1,19 @@
 // Global Zed tasks (all projects). See https://zed.dev/docs/tasks
+// scratch: <type> creates a PhpStorm-style scratch file (⇧⌘N opens this picker); see scripts/scratch.
 [
-  {
-    "label": "New scratch file",
-    "command": "\"$HOME/.config/zed/scripts/scratch\" new",
-    "use_new_terminal": true,
-    "allow_concurrent_runs": true,
-    "reveal": "never",
-    "hide": "always",
-    "show_summary": false,
-    "show_command": false
-  },
-  {
-    "label": "Show scratch files",
-    "command": "\"$HOME/.config/zed/scripts/scratch\" show",
-    "use_new_terminal": true,
-    "allow_concurrent_runs": true,
-    "reveal": "never",
-    "hide": "always",
-    "show_summary": false,
-    "show_command": false
-  }
+  {"label": "scratch: PHP", "command": "\"$HOME/.config/zed/scripts/scratch\" new php", "use_new_terminal": true, "allow_concurrent_runs": true, "reveal": "never", "hide": "always", "show_summary": false, "show_command": false},
+  {"label": "scratch: JSON", "command": "\"$HOME/.config/zed/scripts/scratch\" new json", "use_new_terminal": true, "allow_concurrent_runs": true, "reveal": "never", "hide": "always", "show_summary": false, "show_command": false},
+  {"label": "scratch: Markdown", "command": "\"$HOME/.config/zed/scripts/scratch\" new md", "use_new_terminal": true, "allow_concurrent_runs": true, "reveal": "never", "hide": "always", "show_summary": false, "show_command": false},
+  {"label": "scratch: Plain Text", "command": "\"$HOME/.config/zed/scripts/scratch\" new txt", "use_new_terminal": true, "allow_concurrent_runs": true, "reveal": "never", "hide": "always", "show_summary": false, "show_command": false},
+  {"label": "scratch: JavaScript", "command": "\"$HOME/.config/zed/scripts/scratch\" new js", "use_new_terminal": true, "allow_concurrent_runs": true, "reveal": "never", "hide": "always", "show_summary": false, "show_command": false},
+  {"label": "scratch: TypeScript", "command": "\"$HOME/.config/zed/scripts/scratch\" new ts", "use_new_terminal": true, "allow_concurrent_runs": true, "reveal": "never", "hide": "always", "show_summary": false, "show_command": false},
+  {"label": "scratch: HTML", "command": "\"$HOME/.config/zed/scripts/scratch\" new html", "use_new_terminal": true, "allow_concurrent_runs": true, "reveal": "never", "hide": "always", "show_summary": false, "show_command": false},
+  {"label": "scratch: CSS", "command": "\"$HOME/.config/zed/scripts/scratch\" new css", "use_new_terminal": true, "allow_concurrent_runs": true, "reveal": "never", "hide": "always", "show_summary": false, "show_command": false},
+  {"label": "scratch: SQL", "command": "\"$HOME/.config/zed/scripts/scratch\" new sql", "use_new_terminal": true, "allow_concurrent_runs": true, "reveal": "never", "hide": "always", "show_summary": false, "show_command": false},
+  {"label": "scratch: Shell Script", "command": "\"$HOME/.config/zed/scripts/scratch\" new sh", "use_new_terminal": true, "allow_concurrent_runs": true, "reveal": "never", "hide": "always", "show_summary": false, "show_command": false},
+  {"label": "scratch: YAML", "command": "\"$HOME/.config/zed/scripts/scratch\" new yaml", "use_new_terminal": true, "allow_concurrent_runs": true, "reveal": "never", "hide": "always", "show_summary": false, "show_command": false},
+  {"label": "scratch: XML", "command": "\"$HOME/.config/zed/scripts/scratch\" new xml", "use_new_terminal": true, "allow_concurrent_runs": true, "reveal": "never", "hide": "always", "show_summary": false, "show_command": false},
+  {"label": "scratch: SVG", "command": "\"$HOME/.config/zed/scripts/scratch\" new svg", "use_new_terminal": true, "allow_concurrent_runs": true, "reveal": "never", "hide": "always", "show_summary": false, "show_command": false},
+  {"label": "scratch: Python", "command": "\"$HOME/.config/zed/scripts/scratch\" new py", "use_new_terminal": true, "allow_concurrent_runs": true, "reveal": "never", "hide": "always", "show_summary": false, "show_command": false},
+  {"label": "scratch: show files", "command": "\"$HOME/.config/zed/scripts/scratch\" show", "use_new_terminal": true, "allow_concurrent_runs": true, "reveal": "never", "hide": "always", "show_summary": false, "show_command": false}
 ]

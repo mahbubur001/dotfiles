@@ -1,16 +1,17 @@
 // Zed key bindings. See https://zed.dev/docs/key-bindings
 [
   {
-    // ⇧⌘N: new scratch file, as in PhpStorm (replaces the JetBrains keymap's file finder; ⌘P still opens it).
+    // ⇧⌘N: task picker, type e.g. "php" for "scratch: PHP" (PhpStorm's new scratch file). Replaces the
+    // JetBrains keymap's file finder here; ⌘P still opens it.
     "context": "Workspace",
     "bindings": {
-      "cmd-shift-n": ["task::Spawn", { "task_name": "New scratch file" }]
+      "cmd-shift-n": "task::Spawn"
     }
   },
   {
     "context": "Editor && mode == full",
     "bindings": {
-      "cmd-shift-n": ["task::Spawn", { "task_name": "New scratch file" }]
+      "cmd-shift-n": "task::Spawn"
     }
   }
 ]
