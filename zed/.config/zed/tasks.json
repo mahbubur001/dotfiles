@@ -1,0 +1,23 @@
+// Global Zed tasks (all projects). See https://zed.dev/docs/tasks
+[
+  {
+    "label": "New scratch file",
+    "command": "\"$HOME/.config/zed/scripts/scratch\" new",
+    "use_new_terminal": true,
+    "allow_concurrent_runs": true,
+    "reveal": "never",
+    "hide": "always",
+    "show_summary": false,
+    "show_command": false
+  },
+  {
+    "label": "Show scratch files",
+    "command": "\"$HOME/.config/zed/scripts/scratch\" show",
+    "use_new_terminal": true,
+    "allow_concurrent_runs": true,
+    "reveal": "never",
+    "hide": "always",
+    "show_summary": false,
+    "show_command": false
+  }
+]

@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+# PhpStorm-style scratch files for Zed. Scratches live in Zed's user data folder, outside every project, and the
+# folder is added to the current Zed project so it shows as "scratches" in the project panel.
+#
+#   scratch new    pick a file type, create scratch_N.<ext>, open it   (Zed task "New scratch file", ⇧⌘N)
+#   scratch show   add the scratches folder to the current project    (Zed task "Show scratch files")
+set -euo pipefail
+
+if [[ "$(uname)" == Darwin ]]; then
+  dir="$HOME/Library/Application Support/Zed/scratches"
+else
+  dir="${XDG_DATA_HOME:-$HOME/.local/share}/zed/scratches"
+fi
+mkdir -p "$dir"
+
+zed_cli() {
+  if command -v zed >/dev/null; then zed "$@"
+  elif [[ -x /Applications/Zed.app/Contents/MacOS/cli ]]; then /Applications/Zed.app/Contents/MacOS/cli "$@"
+  else echo "zed CLI not found (run 'zed: install cli' in Zed)" >&2; exit 1
+  fi
+}
+
+# "Label|extension" pairs shown in the picker.
+types=(
+  "PHP|php" "JSON|json" "Markdown|md" "Plain Text|txt" "JavaScript|js" "TypeScript|ts" "HTML|html" "CSS|css"
+  "SQL|sql" "Shell Script|sh" "YAML|yaml" "XML|xml" "SVG|svg" "Python|py"
+)
+
+pick_type() {
+  local last labels=() t
+  last=$(cat "$dir/.last-type" 2>/dev/null || echo "PHP")
+  for t in "${types[@]}"; do labels+=("${t%%|*}"); done
+  if [[ "$(uname)" == Darwin ]]; then
+    local list
+    list=$(printf '"%s",' "${labels[@]}")
+    osascript -e 'activate' \
+      -e "choose from list {${list%,}} with title \"New Scratch File\" with prompt \"File type:\" default items {\"$last\"}"
+  elif command -v zenity >/dev/null; then
+    zenity --list --title "New Scratch File" --column "File type" "${labels[@]}" 2>/dev/null || echo false
+  else
+    echo "$last"
+  fi
+}
+
+next_name() {
+  # scratch, scratch_1, scratch_2, ... numbered across all types, like PhpStorm.
+  local max=-1 f base n
+  shopt -s nullglob
+  for f in "$dir"/scratch.* "$dir"/scratch_*.*; do
+    base=$(basename "$f"); base=${base%%.*}
+    if [[ "$base" == scratch ]]; then n=0; else n=${base#scratch_}; fi
+    [[ "$n" =~ ^[0-9]+$ ]] && (( n > max )) && max=$n
+  done
+  if (( max < 0 )); then echo scratch; else echo "scratch_$((max + 1))"; fi
+}
+
+case "${1:-new}" in
+  new)
+    label=$(pick_type)
+    [[ -z "$label" || "$label" == false ]] && exit 0
+    ext=txt
+    for t in "${types[@]}"; do [[ "${t%%|*}" == "$label" ]] && ext=${t##*|}; done
+    echo "$label" >"$dir/.last-type"
+    file="$dir/$(next_name).$ext"
+    case "$ext" in
+      php) printf '<?php\n\n' >"$file" ;;
+      sh) printf '#!/usr/bin/env bash\n\n' >"$file" ;;
+      *) : >"$file" ;;
+    esac
+    zed_cli --add "$dir" "$file"
+    ;;
+  show)
+    zed_cli --add "$dir"
+    ;;
+  *)
+    echo "usage: scratch [new|show]" >&2; exit 2
+    ;;
+esac
