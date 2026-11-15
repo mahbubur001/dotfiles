@@ -34,9 +34,19 @@ stow -R -t ~ <package>   # relink after adding or moving files
 | `stow` | Stow's global ignore list |
 | `tmux` | tmux (plugins via TPM) |
 | `warp` | Warp tab configs (settings use Warp Settings Sync) |
-| `zsh` | `.zshrc`, aliases, helper scripts |
-| `zed` | Zed `settings.json` (link only the file: `prompts/` and `themes/` stay machine-local) |
+| `zsh` | `.zshrc`, `.zshenv`, aliases, helper scripts |
+| `zed` | Zed settings and extension list. The whole `~/.config/zed` folder is linked, because Zed replaces a symlinked file when it saves. `prompts/` is gitignored. If Zed already created `~/.config/zed`, move it away before stowing |
 | `vscode` | PHP config templates (not stowed) |
+
+## Secrets
+
+This repo is public. Keep secrets in `~/.secrets.zsh` (not tracked, `chmod 600`), which `.zshenv` sources for every zsh, including the login shell Zed reads its environment from:
+
+```sh
+export CONTEXT7_API_KEY=...   # Zed Context7 MCP server
+```
+
+Restart Zed after changing it.
 
 ## Extras
 

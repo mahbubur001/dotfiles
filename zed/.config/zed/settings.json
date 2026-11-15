@@ -6,22 +6,78 @@
 // To see all of Zed's default settings without changing your
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
+//
+// This file is public (~/dotfiles). Never put secrets here: Context7 reads
+// CONTEXT7_API_KEY from ~/.secrets.zsh via ~/.zshenv.
 {
+  "auto_install_extensions": {
+    "archipelago-icons": true,
+    "emmet": true,
+    "git-firefly": true,
+    "github-dark-default": true,
+    "html": true,
+    "material-icon-theme": true,
+    "php": true,
+    "toml": true
+  },
+  "outline_panel": {
+    "dock": "right"
+  },
+  "collaboration_panel": {
+    "dock": "right"
+  },
+  "agent": {
+    "dock": "left",
+    "favorite_models": [],
+    "model_parameters": []
+  },
+  "git_panel": {
+    "dock": "right"
+  },
   "cli_default_open_behavior": "existing_window",
-  "base_keymap": "JetBrains",
+  "terminal": {
+    "font_family": "JetBrainsMonoNL Nerd Font Mono",
+    "shell": "system"
+  },
+  "context_servers": {
+    "iremote": {
+      "enabled": true,
+      "remote": false,
+      "settings": {
+        "root": ""
+      }
+    },
+    // Run via npx instead of the mcp-server-context7 extension, which passes
+    // the key as --api-key (overriding the env var).
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"],
+      "env": {}
+    },
+    "mcp-server-context7": {
+      "enabled": false
+    }
+  },
   "agent_servers": {
     "claude-acp": {
       "type": "registry"
     }
   },
+  "base_keymap": "JetBrains",
+  "icon_theme": {
+    "mode": "light",
+    "light": "Material Icon Theme",
+    "dark": "Archipelago Icons"
+  },
   "ui_font_size": 16,
   "buffer_font_size": 15,
-  "terminal": {
-    "font_family": "Hack Nerd Font Mono",
-  },
   "theme": {
-    "mode": "system",
+    "mode": "dark",
     "light": "Gruvbox Light",
-    "dark": "Gruvbox Dark",
+    "dark": "Gruvbox Dark Hard"
   },
+  "project_panel": {
+    "dock": "right",
+    "folder_indicator": "both"
+  }
 }

@@ -11,3 +11,4 @@ nvim/.config/nvim/sessions/
 **.cache
 .idea
 nvim/.config/nvim/lazy-lock.json
+zed/.config/zed/prompts/
