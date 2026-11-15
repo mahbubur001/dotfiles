@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-# PhpStorm-style scratch files for Zed. Scratches live in Zed's user data folder, outside every project, and the
-# folder is added to the current Zed project so it shows as "scratches" in the project panel.
+# PhpStorm-style scratch files for Zed. Scratches live in Zed's user data folder, outside every project. A new scratch
+# opens as a single file in the current window (adding the folder as a root would turn the project into a different
+# one, e.g. "toolsmith, scratches" in Recent Projects); "show" opens the folder as its own project window.
 #
 #   scratch new <ext>   create scratch_N.<ext> and open it   (Zed tasks "scratch: PHP", "scratch: JSON", … — ⇧⌘N)
-#   scratch show        add the scratches folder to the current project   (Zed task "scratch: show files")
+#   scratch show        open the scratches folder in its own window      (Zed task "scratch: show files")
 set -euo pipefail
 
 if [[ "$(uname)" == Darwin ]]; then
@@ -42,10 +43,10 @@ case "${1:-new}" in
       sh) printf '#!/usr/bin/env bash\n\n' >"$file" ;;
       *) : >"$file" ;;
     esac
-    zed_cli --add "$dir" "$file"
+    zed_cli --existing "$file"
     ;;
   show)
-    zed_cli --add "$dir"
+    zed_cli --new "$dir"
     ;;
   *)
     echo "usage: scratch new <ext> | scratch show" >&2; exit 2
