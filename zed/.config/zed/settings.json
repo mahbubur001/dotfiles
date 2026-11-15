@@ -79,5 +79,13 @@
   "project_panel": {
     "dock": "right",
     "folder_indicator": "both"
+  },
+  "lsp": {
+    "iremote": {
+      "binary": {
+        "path": "/Users/mahbubur/dev/iremote-zed/target/debug/iremote",
+        "arguments": ["lsp"]
+      }
+    }
   }
 }
