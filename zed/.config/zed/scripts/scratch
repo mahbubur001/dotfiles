@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# PhpStorm-style scratch files for Zed. Scratches live in Zed's user data folder, outside every project. Every scratch
-# action adds that folder to the current project, so it shows as "scratches" in the project panel of each project you
-# use it in (Zed has no hook to add it to every project on open). Zed then lists the project as e.g.
-# "toolsmith, scratches" in Recent Projects.
+# PhpStorm-style scratch files for Zed. Scratches live in one shared folder in Zed's user data folder. Every project
+# gets a link to it at .zed/scratches, so the same files show in each project's file tree. (Adding the folder as an
+# extra project root doesn't work across windows: Zed sends it to whichever window already has it.) .zed is never
+# deployed by iRemote, and .zed/scratches is in the global gitignore.
 #
-#   scratch new <ext>   create scratch_N.<ext> and open it   (Zed tasks "scratch: PHP", "scratch: JSON", … — ⇧⌘N)
-#   scratch show        add the scratches folder to the current project   (Zed task "scratch: show files")
+#   scratch new <ext>   link the project, create scratch_N.<ext>, open it   (tasks "scratch: PHP", … — ⇧⌘N)
+#   scratch show        link the project only                                 (task "scratch: show files")
 set -euo pipefail
 
 if [[ "$(uname)" == Darwin ]]; then
@@ -14,6 +14,16 @@ else
   dir="${XDG_DATA_HOME:-$HOME/.local/share}/zed/scratches"
 fi
 mkdir -p "$dir"
+
+# Link .zed/scratches in the project the task runs in (Zed sets ZED_WORKTREE_ROOT).
+link_project() {
+  local root="${ZED_WORKTREE_ROOT:-}" link
+  [[ -n "$root" && -d "$root" ]] || return 0
+  link="$root/.zed/scratches"
+  [[ -e "$link" || -L "$link" ]] && return 0
+  mkdir -p "$root/.zed"
+  ln -s "$dir" "$link"
+}
 
 zed_cli() {
   if command -v zed >/dev/null; then zed "$@"
@@ -44,10 +54,11 @@ case "${1:-new}" in
       sh) printf '#!/usr/bin/env bash\n\n' >"$file" ;;
       *) : >"$file" ;;
     esac
-    zed_cli --add "$dir" "$file"
+    link_project
+    zed_cli --existing "$file"
     ;;
   show)
-    zed_cli --add "$dir"
+    link_project
     ;;
   *)
     echo "usage: scratch new <ext> | scratch show" >&2; exit 2

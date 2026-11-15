@@ -81,3 +81,7 @@ TODO.md
 
 # iRemote (VS Code): per-project deployment mappings, like PhpStorm .idea/deployment.xml
 .vscode/iremote.json
+
+### Zed ###
+# Link to the shared scratch-files folder (zed/.config/zed/scripts/scratch)
+.zed/scratches
