@@ -134,6 +134,13 @@ alt-shift-l = ['join-with right', 'mode main']
 if = 'test %{app-bundle-id} = com.apple.finder || test %{app-bundle-id} = com.apple.TextEdit || test %{app-bundle-id} = com.apple.systempreferences || test %{app-bundle-id} = com.apple.calculator || test %{app-bundle-id} = com.apple.ActivityMonitor'
 run = 'layout floating'
 
+# VEGA (any channel) pop-up windows: Settings, Deployment, About, sign-in, debug tools.
+# Editor windows (titled after the project) stay tiled.
+[[on-window-detected]]
+if.app-name-regex-substring = '^VEGA'
+if.window-title-regex-substring = '^(VEGA — |About VEGA|Use GitHub Copilot|Profiler Window|Debug Filesystem Watching)'
+run = 'layout floating'
+
 # Workspace 2: editor
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = com.microsoft.VSCode'
